@@ -23,6 +23,7 @@ func NewGoCdkStack(scope constructs.Construct, id string, props *GoCdkStackProps
 	stack := awscdk.NewStack(scope, &id, &sprops)
 	// DynamoDB
 	table := awsdynamodb.NewTable(stack, jsii.String("myGoUserTable"), &awsdynamodb.TableProps{
+		RemovalPolicy: awscdk.RemovalPolicy_DESTROY,
 		PartitionKey: &awsdynamodb.Attribute{
 			Name: jsii.String("username"),
 			Type: awsdynamodb.AttributeType_STRING,
